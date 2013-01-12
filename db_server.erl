@@ -11,13 +11,13 @@ stop() ->
   db_server ! stop.
 
 upgrade(Data) -> 
-  sb_server ! {upgrade, Data}.
+  db_server ! {upgrade, Data}.
 
 write(Key, Data) ->
   db_server ! {write, Key, Data}.
 
 read(Key) ->
-  db_serverr ! {read, self(), Key},
+  db_server ! {read, self(), Key},
   receive Reply -> Reply end.
 
 delete(Key) ->
